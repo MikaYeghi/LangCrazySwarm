@@ -20,80 +20,6 @@ from langgraph.prebuilt import tools_condition
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.messages import HumanMessage, SystemMessage
 
-# Define some tools
-def weather_tool(location: str):
-    """
-    Fetches the current weather information for a specified location using the OpenWeatherMap API.
-
-    Args:
-        location: The name of the location (city, region, or country) for which to retrieve the weather data. Must be a complete name, not shortened.
-
-    Returns:
-        dict: A dictionary containing weather information, including:
-            - location (str): The name of the location.
-            - temperature (float): The current temperature in Celsius.
-            - description (str): A brief description of the current weather (e.g., "clear sky").
-            - humidity (int): The current humidity percentage.
-            - wind_speed (float): The wind speed in meters per second.
-        
-        str: An error message if the weather data could not be retrieved.
-        
-    Notes:
-        - The function uses a hardcoded API key. Ensure that it is kept secure and updated as needed.
-        - The temperature is returned in Celsius. Use 'imperial' units for Fahrenheit if needed by modifying the `units` parameter.
-    """
-    base_url = "http://api.openweathermap.org/data/2.5/weather"
-    params = {
-        'q': location,
-        'appid': "aa200e6b28720e9cfca17f9af0e73f35",
-        'units': 'metric'  # Use 'imperial' for Fahrenheit
-    }
-    
-    response = requests.get(base_url, params=params)
-    
-    if response.status_code == 200:
-        data = response.json()
-        weather = {
-            'location': data['name'],
-            'temperature': data['main']['temp'],
-            'description': data['weather'][0]['description'],
-            'humidity': data['main']['humidity'],
-            'wind_speed': data['wind']['speed']
-        }
-        return weather
-    else:
-        return f"Could not retrieve the weather. Response status: {response.status_code}."
-
-def multiply_tool(a: float, b: float) -> float:
-    """Multiply a and b.
-
-    Args:
-        a: first float
-        b: second float
-    """
-    return a * b
-
-def round_tool(a: float, b: int) -> float:
-    """Round float a to b digits.
-
-    Args:
-        a: number that needs to be rounded
-        b: number of digits
-    """
-    return round(a, b)
-
-# def navigate_drone_tool(target_coordinate: List[float]):
-#     """Navigate a drone to target_coordinate specified by the input.
-    
-#     Args:
-#         target_coordinate: target coordinate in the format (x, y, z).
-#     """
-#     # global cf
-#     # global GOTO_DURATION
-#     # global timeHelper
-#     target = cf.initialPosition + np.array(target_coordinate)
-#     cf.goTo(target, yaw=0.0, duration=3)
-#     timeHelper.sleep(GOTO_DURATION + 1.0)
 
 # Function to build and compile the graph
 def init_graph(tools_list: List, system_message: str):
@@ -138,18 +64,9 @@ def init_graph(tools_list: List, system_message: str):
 
 def main():
     # Initialize the swarm simulation
-    # global cf
-    # global GOTO_DURATION
-    # global timeHelper
     Z = 1.0
     TAKEOFF_DURATION = 2.5
     GOTO_DURATION = 3.0
-    WAYPOINTS = np.array([
-        (1.0, 0.0, Z),
-        (1.0, 1.0, Z),
-        (0.0, 1.0, Z),
-        (0.0, 0.0, Z),
-    ])
     swarm = Crazyswarm()
     timeHelper = swarm.timeHelper
     cf = swarm.allcfs.crazyflies[0]
@@ -171,9 +88,6 @@ def main():
 
     # Instantiate the list of tools
     tools_list = [
-        multiply_tool,
-        round_tool,
-        weather_tool,
         navigate_drone_tool
     ]
 
@@ -218,12 +132,6 @@ def main():
         # Print the LLM's response
         for m in result['messages']:
             m.pretty_print()
-        
-        # Navigate the drone
-        cf.goTo(WAYPOINTS[0], yaw=0.0, duration=GOTO_DURATION)
-        
-        
-        # navigate_drone_tool([2, 2, 2])
 
 if __name__ == "__main__":
     main()
