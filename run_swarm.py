@@ -1,3 +1,6 @@
+from matplotlib import pyplot as plt
+plt.switch_backend('agg')
+
 # Load the environment
 from dotenv import load_dotenv
 load_dotenv()
@@ -8,8 +11,6 @@ from pycrazyswarm import Crazyswarm
 
 import requests
 import numpy as np
-from matplotlib import pyplot as plt
-# plt.switch_backend('agg')
 from typing import List
 from functools import partial
 from langgraph.prebuilt import ToolNode
@@ -79,9 +80,6 @@ def main():
         Args:
             target_coordinate: target coordinate in the format (x, y, z).
         """
-        # global cf
-        # global GOTO_DURATION
-        # global timeHelper
         target = cf.initialPosition + np.array(target_coordinate)
         cf.goTo(target, yaw=0.0, duration=3)
         timeHelper.sleep(GOTO_DURATION + 1.0)
