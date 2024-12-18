@@ -1,5 +1,5 @@
 from matplotlib import pyplot as plt
-plt.switch_backend('agg')
+# plt.switch_backend('agg')
 
 # Load the environment
 from dotenv import load_dotenv
@@ -83,15 +83,25 @@ def main():
         target = cf.initialPosition + np.array(target_coordinate)
         cf.goTo(target, yaw=0.0, duration=3)
         timeHelper.sleep(GOTO_DURATION + 1.0)
+        return "Status: OK"
+
+    def land_drone_tool():
+        """Land the drone from the current position."""
+        cf.land(targetHeight=0.05, duration=TAKEOFF_DURATION)
+        timeHelper.sleep(TAKEOFF_DURATION + 1.0)
+        return "Status: OK"
 
     # Instantiate the list of tools
     tools_list = [
-        navigate_drone_tool
+        navigate_drone_tool,
+        land_drone_tool
     ]
 
     # System message
     system_message = """
-    You are a helpful assistant who controls a flying robot. You can set the waypoints for the robot.
+    You are a helpful assistant who controls a flying robot. You can perform the following actions with the robot:
+    - navigate the robot to a waypoint
+    - land the robot
     """
 
     # Initialize the graph
