@@ -9,6 +9,8 @@ import sys
 sys.path.append("/home/yemika/Mikael/Work/UIUC/Projects/AgenticRobots/crazyswarm/ros_ws/src/crazyswarm/scripts")
 from pycrazyswarm import Crazyswarm
 
+import os
+import pickle
 import requests
 import numpy as np
 from typing import List
@@ -21,6 +23,10 @@ from langgraph.prebuilt import tools_condition
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.messages import HumanMessage, SystemMessage
 
+# Save the messages
+def save_messages(messages, save_path):
+    with open(save_path, 'wb') as f:
+        pickle.dump(messages, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 # Function to build and compile the graph
 def init_graph(tools_list: List, system_message: str):
@@ -73,6 +79,13 @@ def main():
     cf = swarm.allcfs.crazyflies[0]
     cf.takeoff(targetHeight=Z, duration=TAKEOFF_DURATION)
     timeHelper.sleep(TAKEOFF_DURATION + 1.0)
+
+    # Configs
+    SAVE_DIR = "experiments"
+    EXPERIMENT_NAME = "test"
+
+    # Create directories
+    os.makedirs(os.path.join(SAVE_DIR, EXPERIMENT_NAME), exist_ok=True)
 
     def navigate_drone_tool(target_coordinate: List[float]):
         """Navigate a drone to target_coordinate specified by the input.
@@ -145,6 +158,14 @@ def main():
         # Print the LLM's response
         for m in result['messages']:
             m.pretty_print()
+    
+    # Save the conversation
+    save_path = os.path.join(SAVE_DIR, EXPERIMENT_NAME, "conversation.pkl")
+    try:
+        save_messages(result['messages'], save_path)
+    except Exception as e:
+        print(f"Error saving the conversation:\n{e}")
+    print(f"Conversation has been successfully saved to: {save_path}")
 
 if __name__ == "__main__":
     main()
