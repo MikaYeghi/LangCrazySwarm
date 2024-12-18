@@ -80,7 +80,7 @@ def main():
         Args:
             target_coordinate: target coordinate in the format (x, y, z).
         """
-        target = cf.initialPosition + np.array(target_coordinate)
+        target = np.array(target_coordinate)
         cf.goTo(target, yaw=0.0, duration=3)
         timeHelper.sleep(GOTO_DURATION + 1.0)
         return "Status: OK"
@@ -90,11 +90,16 @@ def main():
         cf.land(targetHeight=0.05, duration=TAKEOFF_DURATION)
         timeHelper.sleep(TAKEOFF_DURATION + 1.0)
         return "Status: OK"
+    
+    def get_drone_position_tool():
+        """Returns the drone's last measured position."""
+        return cf.position()
 
     # Instantiate the list of tools
     tools_list = [
         navigate_drone_tool,
-        land_drone_tool
+        land_drone_tool,
+        get_drone_position_tool
     ]
 
     # System message
