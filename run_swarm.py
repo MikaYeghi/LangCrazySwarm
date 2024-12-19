@@ -121,7 +121,8 @@ def main():
     tools_list = [
         navigate_drone_tool,
         land_drone_tool,
-        get_drone_position_tool
+        get_drone_position_tool,
+        wait_tool
     ]
 
     # System message
