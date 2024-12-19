@@ -94,7 +94,7 @@ def main():
     # Initialize the swarm simulation
     Z = 1.0
     TAKEOFF_DURATION = 2.5
-    GOTO_DURATION = 3.0
+    GOTO_DURATION = 2.0
     swarm = Crazyswarm()
     timeHelper = swarm.timeHelper
     cf = swarm.allcfs.crazyflies[0]
@@ -115,7 +115,7 @@ def main():
             target_coordinate: target coordinate in the format (x, y, z).
         """
         target = np.array(target_coordinate)
-        cf.goTo(target, yaw=0.0, duration=3)
+        cf.goTo(target, yaw=0.0, duration=2)
         timeHelper.sleep(GOTO_DURATION + 1.0)
         return "Status: OK"
 
