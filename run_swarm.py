@@ -173,7 +173,7 @@ def main():
                 scaling_factor = 1.5 / max_value
 
                 # Scale all values in the tuples
-                scaled_tuples = [(x * scaling_factor, y * scaling_factor, z * scaling_factor) for x, y, z in tuples]
+                scaled_tuples = [(x * scaling_factor, y * scaling_factor, z) for x, y, z in tuples]
 
                 return scaled_tuples
             points = scale_tuples(points)
