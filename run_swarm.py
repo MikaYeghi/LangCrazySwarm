@@ -109,20 +109,11 @@ def main():
         """Returns the drone's last measured position."""
         return cf.position()
     
-    def wait_tool(wait_time):
-        """Waits for the specified number of seconds.
-
-        Args:
-            - wait_time: wait time in seconds
-        """
-        time.sleep(wait_time)
-
     # Instantiate the list of tools
     tools_list = [
         navigate_drone_tool,
         land_drone_tool,
         get_drone_position_tool,
-        wait_tool
     ]
 
     # System message
