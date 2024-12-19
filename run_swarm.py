@@ -117,7 +117,10 @@ def main():
 
     # System message
     system_message = """
-    You are a helpful assistant who controls a flying robot. Make sure you always fly at 1 meter height, unless explicitly told otherwise. You can perform the following actions with the robot:
+    You are a helpful assistant who controls a flying robot. 
+    Make sure you always fly at 1 meter height, unless explicitly told otherwise. 
+    The room has the following dimensions: x_min=-2, x_max=+2, y_min=-2, y_max=+2.
+    You can perform the following actions with the robot:
     - navigate the robot to a waypoint
     - land the robot
     - obtain the robot's current position
