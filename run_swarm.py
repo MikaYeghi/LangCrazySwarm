@@ -10,6 +10,7 @@ sys.path.append("/home/yemika/Mikael/Work/UIUC/Projects/AgenticRobots/crazyswarm
 from pycrazyswarm import Crazyswarm
 
 import os
+import time
 import pickle
 import requests
 import numpy as np
@@ -107,6 +108,14 @@ def main():
     def get_drone_position_tool():
         """Returns the drone's last measured position."""
         return cf.position()
+    
+    def wait_tool(wait_time):
+        """Waits for the specified number of seconds.
+
+        Args:
+            - wait_time: wait time in seconds
+        """
+        time.sleep(wait_time)
 
     # Instantiate the list of tools
     tools_list = [
@@ -119,7 +128,7 @@ def main():
     system_message = """
     You are a helpful assistant who controls a flying robot. 
     Make sure you always fly at 1 meter height, unless explicitly told otherwise. 
-    The room has the following dimensions: x_min=-2, x_max=+2, y_min=-2, y_max=+2.
+    The room has the following dimensions: x_min=-1.7, x_max=+1.7, y_min=-1.5, y_max=+1.5.
     You can perform the following actions with the robot:
     - navigate the robot to a waypoint
     - land the robot
