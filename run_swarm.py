@@ -37,7 +37,7 @@ def init_graph(tools_list: List, system_message: str):
     builder = StateGraph(MessagesState)
 
     # Initialize the tools list
-    llm_with_tools = llm.bind_tools(tools_list)
+    llm_with_tools = llm.bind_tools(tools_list, parallel_tool_calls=False)
 
     # Specify the system message
     sys_message = SystemMessage(content=system_message)
@@ -135,7 +135,7 @@ def main():
     # Initialize the memory configuration
     config = {
         "configurable": {
-            "thread_id": "1"
+            "thread_id": EXPERIMENT_NAME,
         }
     }
 
