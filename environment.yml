@@ -1,27 +1,58 @@
 name: cs
 channels:
+  - anaconda
   - conda-forge
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=conda_forge
   - _openmp_mutex=4.5=2_kmp_llvm
+  - blas=1.0=mkl
+  - bottleneck=1.4.2=py311hf4808d0_0
+  - brotli=1.0.9=h5eee18b_8
+  - brotli-bin=1.0.9=h5eee18b_8
   - bzip2=1.0.8=h5eee18b_6
   - ca-certificates=2024.11.26=h06a4308_0
   - catkin_pkg=1.0.0=pyhd8ed1ab_0
+  - contourpy=1.3.1=py311hdb19cb5_0
   - distro=1.9.0=py311h06a4308_0
   - docutils=0.18.1=py311h06a4308_3
   - eigen=3.4.0=hdb19cb5_0
+  - freetype=2.12.1=h4a9f257_0
+  - intel-openmp=2023.1.0=hdb19cb5_46306
+  - jpeg=9e=h5eee18b_3
+  - lcms2=2.16=hb9589c4_0
   - ld_impl_linux-64=2.40=h12ee557_0
+  - lerc=4.0.0=h6a678d5_0
+  - libbrotlicommon=1.0.9=h5eee18b_8
+  - libbrotlidec=1.0.9=h5eee18b_8
+  - libbrotlienc=1.0.9=h5eee18b_8
+  - libdeflate=1.22=h5eee18b_0
   - libffi=3.4.4=h6a678d5_1
   - libgcc=14.2.0=h77fa898_1
   - libgcc-ng=14.2.0=h69a702a_1
+  - libpng=1.6.39=h5eee18b_0
   - libstdcxx=14.2.0=hc0a3c3a_1
   - libstdcxx-ng=11.2.0=h1234567_1
+  - libtiff=4.5.1=hffd6297_1
   - libuuid=1.41.5=h5eee18b_0
+  - libwebp-base=1.3.2=h5eee18b_1
   - llvm-openmp=14.0.6=h9e868ea_0
+  - lz4-c=1.9.4=h6a678d5_1
+  - matplotlib-base=3.9.2=py311hbfdbfaf_1
+  - mkl=2023.1.0=h213fc3f_46344
+  - mkl-service=2.4.0=py311h5eee18b_1
+  - mkl_fft=1.3.11=py311h5eee18b_0
+  - mkl_random=1.2.8=py311ha02d727_0
   - ncurses=6.4=h6a678d5_0
+  - numexpr=2.10.1=py311h3c60e43_0
+  - numpy=1.26.4=py311h08b1b3b_0
+  - numpy-base=1.26.4=py311hf175353_0
+  - openjpeg=2.5.2=he7f1fd0_0
   - openssl=3.0.15=h5eee18b_0
   - orocos-kdl=1.5.1=h5888daf_8
+  - packaging=24.2=py311h06a4308_0
+  - pandas=2.2.3=py311h6a678d5_0
+  - pillow=11.0.0=py311hcea889d_1
   - pip=24.2=py311h06a4308_0
   - pybind11=2.13.6=py311hdb19cb5_0
   - pybind11-global=2.13.6=py311hdb19cb5_0
@@ -29,31 +60,40 @@ dependencies:
   - python=3.11.10=he870216_0
   - python-dateutil=2.9.0post0=py311h06a4308_2
   - python-orocos-kdl=1.5.1=py311hfdbb021_8
+  - python-tzdata=2023.3=pyhd3eb1b0_0
   - python_abi=3.11=2_cp311
+  - pytz=2024.1=py311h06a4308_0
   - pyyaml=6.0.2=py311h5eee18b_0
   - readline=8.2=h5eee18b_0
   - rospkg=1.5.1=pyhd8ed1ab_0
+  - seaborn=0.13.2=py311h06a4308_0
   - setuptools=75.1.0=py311h06a4308_0
   - six=1.16.0=pyhd3eb1b0_1
   - sqlite=3.45.3=h5eee18b_0
+  - tbb=2021.8.0=hdb19cb5_0
   - tk=8.6.14=h39e8969_0
   - tzdata=2024b=h04d1e81_0
+  - unicodedata2=15.1.0=py311h5eee18b_0
   - wheel=0.44.0=py311h06a4308_0
   - xz=5.4.6=h5eee18b_1
   - yaml=0.2.5=h7b6447c_0
   - zlib=1.2.13=h5eee18b_1
+  - zstd=1.5.6=hc292b87_0
   - pip:
       - aiohappyeyeballs==2.4.4
       - aiohttp==3.11.9
       - aiosignal==1.3.1
       - annotated-types==0.7.0
       - anyio==4.6.2.post1
+      - asttokens==3.0.0
       - attrs==24.2.0
       - certifi==2024.8.30
       - charset-normalizer==3.4.0
-      - contourpy==1.3.1
       - cycler==0.12.1
       - dataclasses-json==0.6.7
+      - decorator==5.1.1
+      - empy==3.3.4
+      - executing==2.1.0
       - ffmpeg-python==0.2.0
       - fonttools==4.55.1
       - freetype-py==2.5.1
@@ -67,6 +107,8 @@ dependencies:
       - httpx-sse==0.4.0
       - idna==3.10
       - iniconfig==2.0.0
+      - ipython==8.30.0
+      - jedi==0.19.2
       - jiter==0.8.0
       - jsonpatch==1.33
       - jsonpointer==3.0.0
@@ -82,19 +124,26 @@ dependencies:
       - langsmith==0.1.147
       - marshmallow==3.23.1
       - matplotlib==3.9.3
+      - matplotlib-inline==0.1.7
       - msgpack==1.1.0
       - multidict==6.1.0
       - mypy-extensions==1.0.0
-      - numpy==1.26.4
       - openai==1.56.2
       - orjson==3.10.12
-      - packaging==24.2
-      - pillow==11.0.0
+      - parso==0.8.4
+      - pexpect==4.9.0
       - pluggy==1.5.0
+      - prompt-toolkit==3.0.48
       - propcache==0.2.1
+      - ptyprocess==0.7.0
+      - pure-eval==0.2.3
       - pydantic==2.10.3
       - pydantic-core==2.27.1
       - pydantic-settings==2.6.1
+      - pygments==2.18.0
+      - pyqt5==5.15.11
+      - pyqt5-qt5==5.15.15
+      - pyqt5-sip==12.15.0
       - pytest==8.3.4
       - python-dotenv==1.0.1
       - regex==2024.11.6
@@ -103,12 +152,15 @@ dependencies:
       - scipy==1.14.1
       - sniffio==1.3.1
       - sqlalchemy==2.0.36
+      - stack-data==0.6.3
       - tenacity==9.0.0
       - tiktoken==0.8.0
       - tqdm==4.67.1
+      - traitlets==5.14.3
       - typing-extensions==4.12.2
       - typing-inspect==0.9.0
       - urllib3==2.2.3
       - vispy==0.14.3
+      - wcwidth==0.2.13
       - yarl==1.18.3
 prefix: /home/yemika/Public/anaconda3/envs/cs
