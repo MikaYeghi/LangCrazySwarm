@@ -25,7 +25,7 @@ def get_values(VICON_DATA_DIR, RUN_NAME):
 
     return x_values, y_values
 
-def plot_animation(x_values, y_values, output_path, fps=30):
+def plot_animation(x_values, y_values, output_path, fps=30, start_frame=None, end_frame=None):
     # Set up the figure and axis
     fig, ax = plt.subplots()
     dx = max(x_values) - min(x_values)
@@ -44,6 +44,11 @@ def plot_animation(x_values, y_values, output_path, fps=30):
     # Remove x and y ticks
     ax.set_xticks([])
     ax.set_yticks([])
+
+    # Cut the frames
+    if start_frame is not None and end_frame is not None:
+        x_values = x_values[start_frame:end_frame]
+        y_values = y_values[start_frame:end_frame]
 
     # Frames per second and total duration
     frames = len(x_values)
@@ -77,16 +82,24 @@ def plot_animation(x_values, y_values, output_path, fps=30):
 
 # Configs
 VICON_DATA_DIR = "results/Vicon_Data"
-RUN_NAME = "LangCrazySwarm_LastDay_Heart-01.csv"
+RUN_NAME = "LangCrazySwarm_LastDay_Lissajous-02.csv"
 SAVE_DIR = "plots"
 FPS = 150
 SHAPE_FRAMES = {
     "heart": {
         "start_frame": 1100,
         "end_frame": 1820
+    },
+    "ellipse": {
+        "start_frame": 867,
+        "end_frame": 1560
+    },
+    "Lissajous": {
+        "start_frame": 2160,
+        "end_frame": 2860
     }
 }
-SHAPE = "heart" # One of: [heart, ellipse, Lissajous]
+SHAPE = "Lissajous" # One of: [heart, ellipse, Lissajous]
 
 # Create paths and save directories
 save_dir = os.path.join(SAVE_DIR, RUN_NAME.split('.')[0])
@@ -98,15 +111,22 @@ x_values, y_values = get_values(VICON_DATA_DIR, RUN_NAME)
 
 # Save the full animation
 output_path = os.path.join(save_dir, "full_trajectory_animation.mp4")
-plot_animation(x_values, y_values, output_path, fps=FPS)
+# plot_animation(
+#     x_values,
+#     y_values,
+#     output_path, 
+#     fps=FPS,
+# )
 
 # Trim the coordinates to plot the shape only
 start_frame = SHAPE_FRAMES[SHAPE]["start_frame"]
 end_frame = SHAPE_FRAMES[SHAPE]["end_frame"]
 output_path = os.path.join(save_dir, "shape_trajectory_animation.mp4")
 plot_animation(
-    x_values[start_frame:end_frame], 
-    y_values[start_frame:end_frame], 
+    x_values,
+    y_values,
     output_path, 
-    fps=FPS
+    fps=FPS,
+    start_frame=start_frame, 
+    end_frame=end_frame, 
 )
