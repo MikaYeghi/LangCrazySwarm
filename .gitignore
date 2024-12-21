@@ -1,2 +1,5 @@
 # Hide .env as it contains API keys
 .env
+
+# Results folder
+results
