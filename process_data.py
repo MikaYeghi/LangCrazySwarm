@@ -84,7 +84,7 @@ def plot_animation(x_values, y_values, output_path, fps=30, start_frame=None, en
 VICON_DATA_DIR = "results/Vicon_Data"
 RUN_NAME = "LangCrazySwarm_LastDay_Lissajous-02.csv"
 SAVE_DIR = "plots"
-FPS = 150
+FPS = 30
 SHAPE_FRAMES = {
     "heart": {
         "start_frame": 1100,
@@ -111,12 +111,12 @@ x_values, y_values = get_values(VICON_DATA_DIR, RUN_NAME)
 
 # Save the full animation
 output_path = os.path.join(save_dir, "full_trajectory_animation.mp4")
-# plot_animation(
-#     x_values,
-#     y_values,
-#     output_path, 
-#     fps=FPS,
-# )
+plot_animation(
+    x_values,
+    y_values,
+    output_path, 
+    fps=FPS,
+)
 
 # Trim the coordinates to plot the shape only
 start_frame = SHAPE_FRAMES[SHAPE]["start_frame"]
