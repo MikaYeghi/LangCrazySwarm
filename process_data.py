@@ -86,13 +86,13 @@ RUN_NAME = "LangCrazySwarm_LastDay_Lissajous-02.csv"
 SAVE_DIR = "plots"
 FPS = 30
 SHAPE_FRAMES = {
-    "heart": {
-        "start_frame": 1100,
-        "end_frame": 1820
-    },
     "ellipse": {
         "start_frame": 867,
         "end_frame": 1560
+    },
+    "heart": {
+        "start_frame": 1100,
+        "end_frame": 1820
     },
     "Lissajous": {
         "start_frame": 2160,
