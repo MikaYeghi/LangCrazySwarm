@@ -1,16 +1,24 @@
 # LangCrazySwarm
 
-### Installation
+## Installation
 
-Follow the Crazyswarm installation. After that, install PyKDL and PyQT5 in the following way:
+First, install the Conda environment in the following way:
+```
+conda env create -f environment.yml -n langcrazyswarm
+conda activate langcrazyswarm
+```
+
+Once you are done with the environment installation, following the [Crazyswarm installation](https://crazyswarm.readthedocs.io/en/latest/installation.html) for Physical Robots and Simulation with the environment activated. After that, install PyKDL and PyQT5 in the following way:
 ```
 conda install conda-forge::python-orocos-kdl
 pip install PyQT5
 ```
 
-After that, add the following lines of code to `visVispy.py` in `crazyswarm/scripts/pycrazyswarm/visualizer`. This action will allow visualization in vispy.
+<!-- ## VisPy Visualization (optional)
 
-### Producing animations of paths
+If you wish to be able to visualize in VisPy, add the following lines of code to `visVispy.py` in `crazyswarm/scripts/pycrazyswarm/visualizer`: -->
+
+## Producing animations of paths
 
 To produce animations of the paths, run the following command:
 ```
