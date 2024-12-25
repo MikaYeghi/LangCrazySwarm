@@ -54,6 +54,31 @@ LangCrazySwarm is a project that integrates the CrazySwarm framework with LangCh
 
 If you wish to be able to visualize in VisPy, add the following lines of code to `visVispy.py` in `crazyswarm/scripts/pycrazyswarm/visualizer`: -->
 
+## Running
+
+#### Simulation
+
+To run the script in a simulator, use the following command from the `ros_ws/src/crazyswarm/scripts/` directory:
+```
+python run_swarm.py --sim --vis vispy
+```
+
+Ensure that you have sourced the necessary setup files for CrazySwarm by running:
+```
+source ../../../devel/setup.bash
+```
+
+This will set up the environment for running the simulation.
+
+#### Physical Robots
+
+To run the system on physical Crazyflies, first, set up the hardware as described in the [CrazySwarm installation guide](https://crazyswarm.readthedocs.io/en/latest/installation.html). Then, run the following command from the `ros_ws/src/crazyswarm/scripts/` directory:
+```
+python run_swarm.py
+```
+
+This will start the swarm with the physical robots.
+
 ## Producing Path Animations
 
 To generate animations of drone paths captured by Vicon:
