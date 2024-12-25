@@ -7,7 +7,11 @@ LangCrazySwarm is a project that integrates the CrazySwarm framework with LangCh
   <img src="videos/NS_heart_shape.gif"       alt="Drone Path in Heart Shape"         width="30%">
   <img src="videos/NS_lissajous_shape.gif"   alt="Drone Path in Lissajous Curve"     width="30%">
 </p>
-
+<p align="center">
+  <img src="videos/ellipse_shape_animation.gif"     alt="Drone Path in Ellipse Shape"       width="30%">
+  <img src="videos/heart_shape_animation.gif"       alt="Drone Path in Heart Shape"         width="30%">
+  <img src="videos/lissajous_shape_animation.gif"   alt="Drone Path in Lissajous Curve"     width="30%">
+</p>
 
 ## Installation
 
