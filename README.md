@@ -56,16 +56,16 @@ If you wish to be able to visualize in VisPy, add the following lines of code to
 
 ## Running
 
+Before running, ensure that you have sourced the necessary setup files for CrazySwarm by executing:
+```
+source ../../../devel/setup.bash
+```
+
 #### Simulation
 
 To run the script in a simulator, use the following command from the `ros_ws/src/crazyswarm/scripts/` directory:
 ```
 python run_swarm.py --sim --vis vispy
-```
-
-Ensure that you have sourced the necessary setup files for CrazySwarm by running:
-```
-source ../../../devel/setup.bash
 ```
 
 This will set up the environment for running the simulation.
